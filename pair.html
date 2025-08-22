@@ -2,22 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Anayat-Ai Pair</title>
+  <title>ANAYAT-AI Ulta Pro Max Hacker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #121212;
-      color: #ffffff;
+      font-family: 'Courier New', monospace;
+      background: #000;
+      color: #00ff88;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 40px 20px;
+      overflow: hidden;
+    }
+    canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+      background: #000;
+    }
+    .flower {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      pointer-events: none;
+      animation: fall linear forwards;
+      z-index: -1;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
     }
     h1 {
-      color: #00ff88;
-      font-size: 28px;
+      font-size: 32px;
       margin-bottom: 20px;
+      color: #ff0033;
+      text-shadow: 0 0 15px #ff0033;
+      animation: glitch 1s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff0000, -2px -2px #00ff88; }
+      50% { text-shadow: -2px -2px #ff0000, 2px 2px #00ff88; }
+      100% { text-shadow: 2px -2px #ff0000, -2px 2px #00ff88; }
     }
     input, button {
       padding: 12px;
@@ -29,67 +58,143 @@
       max-width: 400px;
     }
     input {
-      background: #222;
-      color: #fff;
-      border: 1px solid #444;
+      background: #111;
+      color: #0f0;
+      border: 1px solid #0f0;
     }
     button {
-      background-color: #00ff88;
-      color: #000;
+      background: #ff0033;
+      color: #fff;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: 0.3s;
+      font-weight: bold;
+      box-shadow: 0 0 15px #ff0033;
     }
     button:hover {
-      background-color: #00cc6e;
+      background: #cc0029;
+      box-shadow: 0 0 25px #ff0033;
     }
     .output {
       margin-top: 30px;
-      background: #1e1e1e;
+      background: #111;
       padding: 20px;
       border-radius: 10px;
       max-width: 500px;
       word-break: break-all;
-      border: 1px solid #333;
+      border: 1px solid #ff0033;
+      color: #ff0033;
+      font-size: 18px;
+      text-shadow: 0 0 8px #ff0033;
     }
   </style>
 </head>
 <body>
 
-  <h1>ANAYAT-AI Pairing</h1>
+  <canvas id="matrix"></canvas>
 
-  <input type="text" id="number" placeholder="Enter WhatsApp Number (e.g., 923123456789)" />
-  <button onclick="getCode()">Generate Pair Code</button>
+  <h1>⚠ HACKER ULTA PRO MAX 🌸⚠</h1>
+
+  <input type="text" id="number" placeholder="Enter WhatsApp Number (e.g., 923452401207)" />
+  <button onclick="getCode()">⚡ Generate Pair Code ⚡</button>
 
   <div id="result" class="output" style="display:none;"></div>
 
+  <!-- Hacker sound -->
+  <audio id="hackSound" src="https://www.myinstants.com/media/sounds/hacker.mp3"></audio>
+
   <script>
+    // Typing effect
+    function typeEffect(element, text, speed = 50) {
+      element.textContent = "";
+      let i = 0;
+      function typing() {
+        if (i < text.length) {
+          element.textContent += text.charAt(i);
+          i++;
+          setTimeout(typing, speed);
+        }
+      }
+      typing();
+    }
+
     async function getCode() {
       const number = document.getElementById("number").value.trim();
       const resultBox = document.getElementById("result");
+      const sound = document.getElementById("hackSound");
 
       if (!number) {
-        alert("Please enter a valid number.");
+        alert("⚠ Please enter a valid number!");
         return;
       }
 
       resultBox.style.display = 'block';
-      resultBox.textContent = "⏳ Generating code, please wait...";
+      typeEffect(resultBox, "⏳ Generating code, please wait...");
+
+      sound.play();
 
       try {
         const res = await fetch(`/code?number=${encodeURIComponent(number)}`);
         const data = await res.json();
 
         if (data.code) {
-          resultBox.textContent = `✅ Pairing Code: ${data.code}`;
+          typeEffect(resultBox, `✅ Pairing Code: ${data.code}`);
         } else if (data.error) {
-          resultBox.textContent = `❌ Error: ${data.error}`;
+          typeEffect(resultBox, `❌ Error: ${data.error}`);
         } else {
-          resultBox.textContent = "⚠️ Unknown response received.";
+          typeEffect(resultBox, "⚠️ Unknown response received.");
         }
       } catch (err) {
-        resultBox.textContent = `❌ Failed to get code: ${err.message}`;
+        typeEffect(resultBox, `❌ Failed to get code: ${err.message}`);
       }
     }
+
+    // Matrix hacker rain effect
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = "01HACKERPROMAX";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+
+    const drops = [];
+    for (let x = 0; x < columns; x++) drops[x] = 1;
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#ff0033"; 
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+          drops[i] = 0;
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+
+    // Flowers rain 🌸
+    const flowers = ["🌸", "🌺", "🌹", "🌼", "🌻", "💮"];
+    function createFlower() {
+      const flower = document.createElement("div");
+      flower.classList.add("flower");
+      flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+      flower.style.left = Math.random() * 100 + "vw";
+      flower.style.animationDuration = 3 + Math.random() * 5 + "s";
+      document.body.appendChild(flower);
+
+      setTimeout(() => flower.remove(), 8000);
+    }
+    setInterval(createFlower, 500);
   </script>
 
 </body>
